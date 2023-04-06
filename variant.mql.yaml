@@ -1,0 +1,28 @@
+# Read more about the policy structure at https://mondoo.com/docs
+policies:
+  - uid: variants-policy
+    name: Variants Test Policy
+    version: 1.0.0
+    tags:
+      another-key: another-value
+      key: value
+    authors:
+      - name: Jane Doe
+        email: jane@example.com
+    groups:
+      - filters: platform.name == "aws" || platform.name == "aws-lambda-function"
+        checks:
+          - uid: aws-score-01          
+queries:
+  - uid: aws-score-01
+    title: test it out
+    variants:
+      - uid: aws-score-all-lambdas
+      - uid: aws-score-lambda
+  - uid: aws-score-all-lambdas
+    mql: aws.lambda.functions.all(concurrency > 0)
+    filters: platform.name == "aws"
+  - uid: aws-score-lambda
+    mql: aws.lambda.function { concurrency > 0 }
+    filters: platform.name == "aws-lambda-function"
+
