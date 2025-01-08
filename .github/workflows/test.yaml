@@ -7,7 +7,8 @@ on:
 
 jobs:
   check_token:
-    name: "Check Token"
-    run: |
-      echo "hello"
-      echo ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      name: "Check Token"
+      run: |
+        echo "hello"
+        echo ${{ secrets.GITHUB_TOKEN }}
