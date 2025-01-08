@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  check_token:
+  check-token:
     steps:
-      name: "Check Token"
-      run: |
-        echo "hello"
-        echo ${{ secrets.GITHUB_TOKEN }}
+      - name: Code Checkout
+        run: |
+          echo "hello"
+          echo ${{ secrets.GITHUB_TOKEN }}
