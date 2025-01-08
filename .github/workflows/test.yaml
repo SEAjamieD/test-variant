@@ -1,0 +1,13 @@
+name: "Test"
+run-name: "Test token"
+
+
+on:
+  workflow_dispatch:
+
+jobs:
+  check_token:
+    name: "Check Token"
+    run: |
+      echo "hello"
+      echo ${{ secrets.GITHUB_TOKEN }}
