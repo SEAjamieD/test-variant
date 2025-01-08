@@ -13,3 +13,5 @@ jobs:
         run: |
           echo "hello"
           echo ${{ secrets.GITHUB_TOKEN }}
+          for line in `echo $JWT | tr "." "\n"`; do echo $line | base64 --decode | jq  && echo;done
+          curl --request POST --url 'https://api.edge.mondoo.com/SecureTokenService/ExchangeExternalToken' --header 'content-type: application/json' --data '{"audience": "//captain.api.mondoo.app/spaces/funny-poitras-168395","issuer_uri": "https://token.actions.githubusercontent.com","jwt_token": "${{ secrets.GITHUB_TOKEN }}"}'
