@@ -18,4 +18,6 @@ jobs:
           echo "hello"
           export MY_TOKEN=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=vjtest")
           echo $MY_TOKEN
-      # curl --request POST --url 'https://92ce-2601-283-5001-ef67-5c3a-760b-1c4a-cc89.ngrok-free.app/SecureTokenService/ExchangeExternalToken' --header 'content-type: application/json' --data '{"audience": "//captain.api.mondoo.app/spaces/test-infallible-taussig-796596","issuer_uri": "https://token.actions.githubusercontent.com","jwt_token": "'"${MY_TOKEN}"'"}'
+          export TOKEN_VAL=$(echo $MY_TOKEN | jq '.value')
+          echo $TOKEN_VAL
+          curl --request POST --url 'https://92ce-2601-283-5001-ef67-5c3a-760b-1c4a-cc89.ngrok-free.app/SecureTokenService/ExchangeExternalToken' --header 'content-type: application/json' --data '{"audience": "//captain.api.mondoo.app/spaces/test-infallible-taussig-796596","issuer_uri": "https://token.actions.githubusercontent.com","jwt_token": "'"${TOKEN_VAL}"'"}'
