@@ -15,4 +15,4 @@ jobs:
         run: |
           echo "hello"
           echo $MY_TOKEN
-          curl --request POST --url 'https://92ce-2601-283-5001-ef67-5c3a-760b-1c4a-cc89.ngrok-free.app/SecureTokenService/ExchangeExternalToken' --header 'content-type: application/json' --data '{"audience": "//captain.api.mondoo.app/spaces/test-infallible-taussig-796596","issuer_uri": "https://token.actions.githubusercontent.com","jwt_token": "${MY_TOKEN}""}'
+          curl --request POST --url 'https://92ce-2601-283-5001-ef67-5c3a-760b-1c4a-cc89.ngrok-free.app/SecureTokenService/ExchangeExternalToken' --header 'content-type: application/json' --data '{"audience": "//captain.api.mondoo.app/spaces/test-infallible-taussig-796596","issuer_uri": "https://token.actions.githubusercontent.com","jwt_token": "${MY_TOKEN}"}'
