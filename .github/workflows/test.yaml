@@ -16,4 +16,6 @@ jobs:
           echo "hello"
           export MY_TOKEN=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=vjtest" | jq -r '.value')
           echo $MY_TOKEN
-          curl --request POST --url 'https://92ce-2601-283-5001-ef67-5c3a-760b-1c4a-cc89.ngrok-free.app/SecureTokenService/ExchangeExternalToken' --header 'content-type: application/json' --data '{"audience": "//captain.api.mondoo.app/spaces/test-infallible-taussig-796596","issuer_uri": "https://token.actions.githubusercontent.com","jwt_token": "'"${MY_TOKEN}"'"}'
+          export MONDOO_CONFIG_BASE64=$(curl --request POST --url 'https://b9fe-2601-283-5001-ef67-f0d2-1f5b-c249-86a.ngrok-free.app/SecureTokenService/ExchangeExternalToken' --header 'content-type: application/json' --data '{"audience": "//captain.api.mondoo.app/spaces/test-infallible-taussig-796596","issuer_uri": "https://token.actions.githubusercontent.com","jwt_token": "'"${MY_TOKEN}"'"}' | jq -r '.base64_credential')
+          cnspec status
+          if [ $(echo $?) != 0 ]; then echo "failed to reach mondoo" exit 1; fi
