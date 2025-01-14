@@ -4,6 +4,8 @@ run-name: "Test token"
 
 on:
   workflow_dispatch:
+  release:
+    types: [published]
 
 jobs:
   check-token:
